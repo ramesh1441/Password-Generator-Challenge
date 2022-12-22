@@ -29,7 +29,7 @@ function generatePassword()
   
   if (haslowerCasedCharacters === false && hasNumericCharacters === false && hasSpecialCharacters === false &&  hasUpperCasedCharacters === false)
  { alert ("Password must have atleast one character type selected");
-
+  return null;
  }
   var passwordProperties = {
   length: length,
@@ -40,34 +40,35 @@ function generatePassword()
  };
 console.log(passwordProperties);
 
-
-  
-  var pool = [];
+  var passcombination = [];
 
   if (passwordProperties.haslowerCasedCharacters) {
-    pool = [...lowerCasedCharacters,...pool];
+    passcombination = [...lowerCasedCharacters,...passcombination];
   }
 
   if (passwordProperties.hasUpperCasedCharacters) {
-    pool = [...upperCasedCharacters,...pool];
+    passcombination = [...upperCasedCharacters,...passcombination];
   }
 
   if (passwordProperties.hasNumericCharacters) {
-    pool = [...numericCharacters,...pool];
+    passcombination = [...numericCharacters,...passcombination];
   }
 
   if (passwordProperties.hasSpecialCharacters) {
-    pool = [...specialCharacters,...pool];
+    passcombination = [...specialCharacters,...passcombination];
   }
+console.log(passcombination);
 
-  let password = "";
+var password = [];
 
-  for (i=0; i<length; i++)
- password += pool[Math.random()*pool.length];
- return (password);
-
+  for (i=0; i<passwordProperties.length; i++){
+ password += passcombination[Math.floor(Math.random()*passcombination.length)];
+  }
+  console.log(password);
+  return(password);
 
 }
+
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
 
